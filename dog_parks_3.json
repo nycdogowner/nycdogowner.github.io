@@ -1,33 +1,127 @@
 {
-  "generated_at":"2025-09-30T00:00:00Z",
-  "version":"1.0.0",
-  "entries_count":40,
-  "entries":[
+  "generated_at": "2025-09-30T00:00:00Z",
+  "version": "1.0.0",
+  "entries_count": 10,
+  "entries": [
     {
-      "id":"park-brx-001",
-      "name":"Van Cortlandt Park",
-      "borough":"Bronx",
-      "coords":[40.8970,-73.8860],
-      "summary":"Large Bronx park with extensive trails and designated off-leash hours.",
-      "off_leash_hours":["06:00-09:00"],
-      "designated_areas":["Parade Ground","Woodlawn section"],
-      "restricted":["Horse trails proximity"],
-      "map_url":"https://www.nycgovparks.org/parks/van-cortlandt-park",
-      "notes":"Respect equestrian areas and stables."
+      "id": "park-brx-001",
+      "name": "Van Cortlandt Park",
+      "borough": "Bronx",
+      "coords": [40.897, -73.886],
+      "summary": "Large Bronx park with extensive trails and designated off-leash hours.",
+      "off_leash_hours": ["06:00-09:00"],
+      "designated_areas": ["Parade Ground", "Woodlawn section"],
+      "restricted": ["Horse trails proximity"],
+      "map_url": "https://www.nycgovparks.org/parks/van-cortlandt-park",
+      "notes": "Respect equestrian areas and stables."
     },
     {
-      "id":"park-si-001",
-      "name":"Clove Lakes Park",
-      "borough":"Staten Island",
-      "coords":[40.5850,-74.1296],
-      "summary":"Popular Staten Island park with lakes and off-leash-friendly meadows.",
-      "off_leash_hours":["06:00-09:00"],
-      "designated_areas":["Upper Lake perimeter","Main Meadow"],
-      "restricted":["Fishing areas","Boat facilities"],
-      "map_url":"https://www.nycgovparks.org/parks/clove-lakes-park",
-      "notes":"Quiet and spacious; good for long walks."
+      "id": "park-brx-002",
+      "name": "Bronx Park",
+      "borough": "Bronx",
+      "coords": [40.853, -73.872],
+      "summary": "Home to the Bronx Zoo and NY Botanical Garden; limited dog access with leash required.",
+      "off_leash_hours": ["N/A"],
+      "designated_areas": ["General walking paths"],
+      "restricted": ["Zoo grounds", "Botanical Garden"],
+      "map_url": "https://www.nycgovparks.org/parks/bronx-park",
+      "notes": "Stay on designated pedestrian areas."
+    },
+    {
+      "id": "park-brx-003",
+      "name": "Crotona Park",
+      "borough": "Bronx",
+      "coords": [40.831, -73.892],
+      "summary": "Mid-Bronx park with large lawns and sports fields; dogs must remain on leash.",
+      "off_leash_hours": ["06:00-09:00"],
+      "designated_areas": ["Crotona Lawn (off-leash mornings)"],
+      "restricted": ["Playgrounds", "Swimming pool area"],
+      "map_url": "https://www.nycgovparks.org/parks/crotona-park",
+      "notes": "Good morning dog-walking spot."
+    },
+    {
+      "id": "park-brx-004",
+      "name": "Soundview Park",
+      "borough": "Bronx",
+      "coords": [40.808, -73.868],
+      "summary": "Waterfront park with restored salt marshes and walking trails.",
+      "off_leash_hours": ["06:00-09:00"],
+      "designated_areas": ["Open lawns near Lafayette Ave"],
+      "restricted": ["Playgrounds", "Nature restoration areas"],
+      "map_url": "https://www.nycgovparks.org/parks/soundview-park",
+      "notes": "Great for early morning exercise."
+    },
+    {
+      "id": "park-brx-005",
+      "name": "Orchard Beach / Pelham Bay Park",
+      "borough": "Bronx",
+      "coords": [40.871, -73.806],
+      "summary": "Massive parkland with Orchard Beach; dogs permitted on trails but not on beach during summer.",
+      "off_leash_hours": ["06:00-09:00"],
+      "designated_areas": ["Pelham Bay trails"],
+      "restricted": ["Orchard Beach (May 1–Oct 1)", "Sports fields"],
+      "map_url": "https://www.nycgovparks.org/parks/pelham-bay-park",
+      "notes": "Largest NYC park; great for long hikes."
+    },
+    {
+      "id": "park-si-001",
+      "name": "Clove Lakes Park",
+      "borough": "Staten Island",
+      "coords": [40.585, -74.1296],
+      "summary": "Popular Staten Island park with lakes and off-leash-friendly meadows.",
+      "off_leash_hours": ["06:00-09:00"],
+      "designated_areas": ["Upper Lake perimeter", "Main Meadow"],
+      "restricted": ["Fishing areas", "Boat facilities"],
+      "map_url": "https://www.nycgovparks.org/parks/clove-lakes-park",
+      "notes": "Quiet and spacious; good for long walks."
+    },
+    {
+      "id": "park-si-002",
+      "name": "Silver Lake Park",
+      "borough": "Staten Island",
+      "coords": [40.624, -74.106],
+      "summary": "Park with a large reservoir and green lawns; off-leash hours in certain areas.",
+      "off_leash_hours": ["06:00-09:00"],
+      "designated_areas": ["Northwest Lawn"],
+      "restricted": ["Reservoir perimeter"],
+      "map_url": "https://www.nycgovparks.org/parks/silver-lake-park",
+      "notes": "Peaceful trails; leash required near water."
+    },
+    {
+      "id": "park-si-003",
+      "name": "Conference House Park",
+      "borough": "Staten Island",
+      "coords": [40.503, -74.251],
+      "summary": "Historic Staten Island park at the southern tip; beaches and wooded trails.",
+      "off_leash_hours": ["N/A"],
+      "designated_areas": ["Wooded trails"],
+      "restricted": ["Beaches during summer season"],
+      "map_url": "https://www.nycgovparks.org/parks/conference-house-park",
+      "notes": "Good for history lovers; seasonal restrictions apply."
+    },
+    {
+      "id": "park-si-004",
+      "name": "Wolfe's Pond Park",
+      "borough": "Staten Island",
+      "coords": [40.522, -74.176],
+      "summary": "Beachfront park with wooded areas and dog-friendly lawns.",
+      "off_leash_hours": ["06:00-09:00"],
+      "designated_areas": ["Meadow sections"],
+      "restricted": ["Beach (May 1–Oct 1)"],
+      "map_url": "https://www.nycgovparks.org/parks/wolfes-pond-park",
+      "notes": "Nice mix of trails and open lawns."
+    },
+    {
+      "id": "park-si-005",
+      "name": "Great Kills Park (Gateway NRA)",
+      "borough": "Staten Island",
+      "coords": [40.544, -74.138],
+      "summary": "Part of Gateway National Recreation Area; beaches and trails with specific pet rules.",
+      "off_leash_hours": ["N/A"],
+      "designated_areas": ["Certain trails"],
+      "restricted": ["Lifeguarded beaches (summer)", "Marina"],
+      "map_url": "https://www.nps.gov/gate/planyourvisit/greenkills.htm",
+      "notes": "Federal park rules apply."
     }
-
-    /* Add many more Bronx/Staten Island neighborhood parks to reach target count */
   ]
 }
