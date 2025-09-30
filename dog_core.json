@@ -1,0 +1,61 @@
+{
+  "generated_at": "2025-09-30T00:00:00Z",
+  "version": "1.0.0",
+  "entries_count": 1,
+  "general_rules": [
+    "Dogs must be licensed and wear a valid dog license tag at all times.",
+    "Dogs must be vaccinated against rabies. Keep proof of vaccination available.",
+    "Leash must not exceed 6 feet in public spaces unless in designated off-leash hours or dog runs.",
+    "Owners must remove and properly dispose of dog waste immediately (Pooper Scooper Law).",
+    "Dogs are prohibited from playgrounds, public pools, fountains, and certain protected natural areas.",
+    "Owners must control their dog to prevent aggressive behavior toward people or other animals."
+  ],
+  "licenses": {
+    "requirement": "All dogs older than 4 months must be licensed in NYC.",
+    "fees": {
+      "spayed_neutered": {"cost":"$8.50/year","note":"Proof required"},
+      "non_spayed_neutered": {"cost":"$34.00/year","note":"Proof required"}
+    },
+    "application": {
+      "methods":["online","by mail"],
+      "required_documents":["Rabies vaccination certificate","Owner identification"],
+      "processing_time":"2-4 weeks",
+      "renewal":"Annual renewal required"
+    },
+    "vaccination": {
+      "required":["Rabies"],
+      "recommended":["Bordetella","Distemper","Parvovirus"]
+    }
+  },
+  "fines": {
+    "waste": {"violation":"Failure to pick up dog waste","penalty":"$50-$250 depending on circumstances","note":"Typical enforcement by local precinct or parks enforcement."},
+    "off_leash": {"violation":"Dog off-leash outside permitted hours/areas","penalty":"$50-$200","note":"Higher fines possible for repeated infractions."},
+    "unlicensed": {"violation":"Unlicensed dog","penalty":"$50-$200","note":"License required; amount varies."},
+    "unvaccinated": {"violation":"Failure to vaccinate for rabies","penalty":"$100-$500","note":"Rabies is a public health concern."},
+    "dangerous_dog": {"violation":"Dog deemed dangerous after biting/attacking","penalty":"Court hearing; penalties vary","note":"May include quarantine, mandatory training, or euthanasia in extreme cases."}
+  },
+  "seasonal_rules": {
+    "summer": {
+      "heat_advisory":"Avoid walking dogs between 11:00 AM — 4:00 PM when heat index is high.",
+      "hydration":"Bring portable water; stop frequently for water breaks.",
+      "pavement_warning":"If pavement is too hot for your hand, it's too hot for paws."
+    },
+    "winter": {
+      "salt_warning":"Rinse/wipe paws after walks to remove salt and de-icers.",
+      "cold_tips":"Limit exposure; small and short-haired breeds may require jackets below 40°F."
+    },
+    "coyote_alerts": {
+      "note":"Certain outer-borough parks have seasonal coyote activity. Keep small dogs on short leash and avoid dusk/dawn alone."
+    }
+  },
+  "transport_rules": {
+    "subway":"Pets must be in a carrier to ride most subway lines except service animals.",
+    "bus":"Policies vary; most public buses allow service animals and occasionally pets in carriers.",
+    "taxi_rideshare":"Driver discretion; secure the dog properly and be prepared to provide cleaning fee if requested."
+  },
+  "faq": [
+    {"q":"Can I bring my dog to a rooftop bar?","a":"Policies vary by venue. Contact venue before bringing your dog."},
+    {"q":"Are emotional support animals covered under the same rules as service animals?","a":"Service animals have broader access rights; ESA designation does not guarantee access in all places."},
+    {"q":"How to report an aggressive dog?","a":"Contact 311 or Animal Care Centers NYC; emergency situations call 911."}
+  ]
+}

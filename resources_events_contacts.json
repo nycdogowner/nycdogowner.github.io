@@ -1,0 +1,21 @@
+{
+  "generated_at":"2025-09-30T00:00:00Z",
+  "version":"1.0.0",
+  "official": [
+    {"title":"NYC Dog Licensing (DOH)","url":"https://www.nyc.gov/site/doh/services/dog-licenses.page"},
+    {"title":"NYC Parks Dog Areas","url":"https://www.nycgovparks.org/facilities/dogareas"}
+  ],
+  "contacts":[
+    {"service":"Animal Care Centers NYC","phone":"212-788-4000","url":"https://www.nycacc.org","notes":"Animal intake and lost/found animals."},
+    {"service":"NYC 311","phone":"311","url":"https://portal.311.nyc.gov","notes":"Non-emergency city services, report issues or complaints."},
+    {"service":"ASPCA Poison Control","phone":"888-426-4435","notes":"Pet poison emergency line"}
+  ],
+  "events":[
+    {"name":"Adoptapalooza (sample)","borough":"Manhattan","month":"September","location":"Union Square","desc":"Large adoption fair with dozens of rescue groups."},
+    {"name":"Halloween Dog Parade (sample)","borough":"Brooklyn","month":"October","location":"Prospect Park","desc":"Costume parade for dogs and owners."}
+  ],
+  "faq_templates":[
+    {"title":"Sample email to landlord about dog run access","body":"Hello [Landlord Name],\nI live in [unit] and would like to request access to use the building's common area for dog walking at scheduled times. Please advise procedures..."},
+    {"title":"Complaint template for off-leash dog near playground","body":"To Whom It May Concern,\nI witnessed a dog off-leash in a children's playground at [location] at [time]..."}
+  ]
+}
