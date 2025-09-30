@@ -1,59 +1,127 @@
 {
-  "generated_at":"2025-09-30T00:00:00Z",
-  "version":"1.0.0",
-  "entries_count":40,
-  "entries":[
+  "generated_at": "2025-09-30T00:00:00Z",
+  "version": "1.0.0",
+  "entries_count": 10,
+  "entries": [
     {
-      "id":"park-bk-001",
-      "name":"Prospect Park",
-      "borough":"Brooklyn",
-      "coords":[40.660204,-73.968956],
-      "summary":"Large park with Long Meadow and Nethermead — several off-leash hours and designated areas.",
-      "off_leash_hours":["05:00-09:00","21:00-01:00"],
-      "designated_areas":["Long Meadow","Nethermead","Peninsula"],
-      "restricted":["Playgrounds","Lakes"],
-      "map_url":"https://www.prospectpark.org",
-      "notes":"Community rangers enforce rules; avoid sports fields."
+      "id": "park-bk-001",
+      "name": "Prospect Park",
+      "borough": "Brooklyn",
+      "coords": [40.660204, -73.968956],
+      "summary": "Large park with Long Meadow and Nethermead — several off-leash hours and designated areas.",
+      "off_leash_hours": ["05:00-09:00", "21:00-01:00"],
+      "designated_areas": ["Long Meadow", "Nethermead", "Peninsula"],
+      "restricted": ["Playgrounds", "Lakes"],
+      "map_url": "https://www.prospectpark.org",
+      "notes": "Community rangers enforce rules; avoid sports fields."
     },
     {
-      "id":"park-bk-002",
-      "name":"McCarren Park",
-      "borough":"Brooklyn",
-      "coords":[40.7233,-73.9526],
-      "summary":"Popular Williamsburg/Greenpoint park; dog area and mixed-use paths.",
-      "off_leash_hours":["06:00-09:00","20:00-01:00"],
-      "designated_areas":["North Dog-friendly section"],
-      "restricted":["Playgrounds"],
-      "map_url":"https://www.nycgovparks.org/parks/mccarren-park",
-      "notes":"Busy; check local signage for temporary restrictions."
+      "id": "park-bk-002",
+      "name": "McCarren Park",
+      "borough": "Brooklyn",
+      "coords": [40.7233, -73.9526],
+      "summary": "Popular Williamsburg/Greenpoint park; dog area and mixed-use paths.",
+      "off_leash_hours": ["06:00-09:00", "20:00-01:00"],
+      "designated_areas": ["North Dog-friendly section"],
+      "restricted": ["Playgrounds"],
+      "map_url": "https://www.nycgovparks.org/parks/mccarren-park",
+      "notes": "Busy; check local signage for temporary restrictions."
     },
     {
-      "id":"park-bk-003",
-      "name":"Domino Park",
-      "borough":"Brooklyn",
-      "coords":[40.7178,-73.9640],
-      "summary":"East Williamsburg waterfront park with a small dog run and off-leash-friendly spots.",
-      "off_leash_hours":["N/A"],
-      "designated_areas":["Domino Dog Run"],
-      "restricted":["Play areas"],
-      "map_url":"https://www.dominopark.org",
-      "notes":"Great views of Manhattan; dog run is fenced and popular."
+      "id": "park-bk-003",
+      "name": "Domino Park",
+      "borough": "Brooklyn",
+      "coords": [40.7178, -73.964],
+      "summary": "East Williamsburg waterfront park with a small dog run and off-leash-friendly spots.",
+      "off_leash_hours": ["N/A"],
+      "designated_areas": ["Domino Dog Run"],
+      "restricted": ["Play areas"],
+      "map_url": "https://www.dominopark.org",
+      "notes": "Great views of Manhattan; dog run is fenced and popular."
     },
-
-    /* add more Brooklyn parks until file count */
     {
-      "id":"park-que-001",
-      "name":"Flushing Meadows–Corona Park",
-      "borough":"Queens",
-      "coords":[40.7498,-73.8408],
-      "summary":"Huge park with Meadow Lake and Willow Lake; select off-leash hours in certain areas.",
-      "off_leash_hours":["06:00-09:00"],
-      "designated_areas":["Meadow Lake perimeter"],
-      "restricted":["Playgrounds","Event fields"],
-      "map_url":"https://www.nycgovparks.org/parks/flushing-meadows-corona-park",
-      "notes":"Avoid events during large sports tournaments."
+      "id": "park-bk-004",
+      "name": "Brooklyn Bridge Park",
+      "borough": "Brooklyn",
+      "coords": [40.7003, -73.9967],
+      "summary": "Waterfront park along the East River with dog runs and leashed walking paths.",
+      "off_leash_hours": ["06:00-09:00"],
+      "designated_areas": ["Main Street Dog Run", "Pier 6 Dog Run"],
+      "restricted": ["Playgrounds", "Lawns during events"],
+      "map_url": "https://www.brooklynbridgepark.org",
+      "notes": "Great skyline views; runs can be crowded in evenings."
+    },
+    {
+      "id": "park-bk-005",
+      "name": "Fort Greene Park",
+      "borough": "Brooklyn",
+      "coords": [40.6924, -73.974],
+      "summary": "Historic Brooklyn park with green lawns and community-managed dog areas.",
+      "off_leash_hours": ["06:00-09:00"],
+      "designated_areas": ["Northwest Lawn"],
+      "restricted": ["Playgrounds", "Monument steps"],
+      "map_url": "https://www.nycgovparks.org/parks/fort-greene-park",
+      "notes": "Local community enforces leash rules."
+    },
+    {
+      "id": "park-que-001",
+      "name": "Flushing Meadows–Corona Park",
+      "borough": "Queens",
+      "coords": [40.7498, -73.8408],
+      "summary": "Huge park with Meadow Lake and Willow Lake; select off-leash hours in certain areas.",
+      "off_leash_hours": ["06:00-09:00"],
+      "designated_areas": ["Meadow Lake perimeter"],
+      "restricted": ["Playgrounds", "Event fields"],
+      "map_url": "https://www.nycgovparks.org/parks/flushing-meadows-corona-park",
+      "notes": "Avoid events during large sports tournaments."
+    },
+    {
+      "id": "park-que-002",
+      "name": "Astoria Park",
+      "borough": "Queens",
+      "coords": [40.7795, -73.9226],
+      "summary": "Scenic park under the RFK Bridge; popular for dog walks along the waterfront.",
+      "off_leash_hours": ["06:00-09:00"],
+      "designated_areas": ["Shoreline paths"],
+      "restricted": ["Playgrounds", "Pool area"],
+      "map_url": "https://www.nycgovparks.org/parks/astoria-park",
+      "notes": "Very busy in summer; avoid pool vicinity."
+    },
+    {
+      "id": "park-que-003",
+      "name": "Forest Park",
+      "borough": "Queens",
+      "coords": [40.702, -73.855],
+      "summary": "Large wooded park with trails and bridle paths; dogs must be leashed on most trails.",
+      "off_leash_hours": ["06:00-09:00"],
+      "designated_areas": ["Forest Park Dog Run"],
+      "restricted": ["Equestrian trails"],
+      "map_url": "https://www.nycgovparks.org/parks/forest-park",
+      "notes": "Good for quiet hikes with leashed dogs."
+    },
+    {
+      "id": "park-que-004",
+      "name": "Socrates Sculpture Park",
+      "borough": "Queens",
+      "coords": [40.7684, -73.9365],
+      "summary": "Outdoor art park in Long Island City; leashed dogs welcome.",
+      "off_leash_hours": ["N/A"],
+      "designated_areas": [],
+      "restricted": ["Exhibit areas during events"],
+      "map_url": "https://socratessculpturepark.org",
+      "notes": "Great cultural space; dogs must be leashed."
+    },
+    {
+      "id": "park-que-005",
+      "name": "Gantry Plaza State Park",
+      "borough": "Queens",
+      "coords": [40.746, -73.958],
+      "summary": "Beautiful waterfront park with Manhattan skyline views; dogs allowed on leash.",
+      "off_leash_hours": ["N/A"],
+      "designated_areas": ["Community-managed dog area"],
+      "restricted": ["Playgrounds"],
+      "map_url": "https://parks.ny.gov/parks/gantryplaza",
+      "notes": "Very popular with families; keep leash short."
     }
-
-    /* continue with many entries for Queens neighborhoods */
   ]
 }
