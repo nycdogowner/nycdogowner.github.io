@@ -1,40 +1,59 @@
 {
-  "generated_at":"2025-09-30T00:00:00Z",
-  "version":"1.0.0",
-  "entries_count":20,
-  "entries":[
+  "generated_at": "2025-09-30T00:00:00Z",
+  "version": "1.0.0",
+  "entries_count": 3,
+  "entries": [
     {
-      "id":"run-001",
-      "name":"Tompkins Square Dog Run",
-      "borough":"Manhattan",
-      "coords":[40.7265,-73.9815],
-      "surface":"sand & gravel",
-      "hours":"06:00-00:00",
-      "facilities":["Water fountain","Small-dog area","Benches","Shade"],
-      "community_rating":4.6,
-      "notes":"Very popular; can be crowded evenings and weekends."
+      "id": "run-001",
+      "name": "Tompkins Square Dog Run",
+      "borough": "Manhattan",
+      "coords": [
+        40.7265,
+        -73.9815
+      ],
+      "surface": "sand & gravel",
+      "hours": "06:00-00:00",
+      "facilities": [
+        "Water fountain",
+        "Small-dog area",
+        "Benches",
+        "Shade"
+      ],
+      "community_rating": 4.6,
+      "notes": "Very popular; can be crowded evenings and weekends."
     },
     {
-      "id":"run-002",
-      "name":"Madison Square Park Dog Run",
-      "borough":"Manhattan",
-      "coords":[40.7425,-73.9876],
-      "surface":"gravel",
-      "hours":"06:00-23:00",
-      "facilities":["Benches","Waste bags dispenser"],
-      "community_rating":4.4
+      "id": "run-002",
+      "name": "Madison Square Park Dog Run",
+      "borough": "Manhattan",
+      "coords": [
+        40.7425,
+        -73.9876
+      ],
+      "surface": "gravel",
+      "hours": "06:00-23:00",
+      "facilities": [
+        "Benches",
+        "Waste bags dispenser"
+      ],
+      "community_rating": 4.4
     },
     {
-      "id":"run-010",
-      "name":"Domino Park Dog Run",
-      "borough":"Brooklyn",
-      "coords":[40.7178,-73.9640],
-      "surface":"turf",
-      "hours":"06:00-01:00",
-      "facilities":["Fenced", "Water", "Shade"],
-      "community_rating":4.7
+      "id": "run-010",
+      "name": "Domino Park Dog Run",
+      "borough": "Brooklyn",
+      "coords": [
+        40.7178,
+        -73.964
+      ],
+      "surface": "turf",
+      "hours": "06:00-01:00",
+      "facilities": [
+        "Fenced",
+        "Water",
+        "Shade"
+      ],
+      "community_rating": 4.7
     }
-
-    /* expand with many more runs covering all boroughs */
   ]
 }

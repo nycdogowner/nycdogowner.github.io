@@ -1,38 +1,55 @@
 {
-  "generated_at":"2025-09-30T00:00:00Z",
-  "version":"1.0.0",
-  "entries_count":40,
-  "entries":[
+  "generated_at": "2025-09-30T00:00:00Z",
+  "version": "1.0.0",
+  "entries_count": 3,
+  "entries": [
     {
-      "id":"clinic-001",
-      "name":"ASPCA Mobile Clinic (sample)",
-      "type":"mobile",
-      "boroughs":["Manhattan","Brooklyn","Queens"],
-      "address":null,
-      "phone":"(212) 876-7700",
-      "services":["Low-cost vaccination","Microchipping","Basic wellness"],
-      "notes":"Check ASPCA site for monthly schedule."
+      "id": "clinic-001",
+      "name": "ASPCA Mobile Clinic (sample)",
+      "type": "mobile",
+      "boroughs": [
+        "Manhattan",
+        "Brooklyn",
+        "Queens"
+      ],
+      "address": null,
+      "phone": "(212) 876-7700",
+      "services": [
+        "Low-cost vaccination",
+        "Microchipping",
+        "Basic wellness"
+      ],
+      "notes": "Check ASPCA site for monthly schedule."
     },
     {
-      "id":"clinic-002",
-      "name":"NYC DOH Rabies Clinic (sample)",
-      "type":"government",
-      "boroughs":["Bronx","Staten Island"],
-      "phone":"311",
-      "services":["Free rabies vaccination events"],
-      "notes":"Dates vary; walk-up events announced seasonally."
+      "id": "clinic-002",
+      "name": "NYC DOH Rabies Clinic (sample)",
+      "type": "government",
+      "boroughs": [
+        "Bronx",
+        "Staten Island"
+      ],
+      "phone": "311",
+      "services": [
+        "Free rabies vaccination events"
+      ],
+      "notes": "Dates vary; walk-up events announced seasonally."
     },
     {
-      "id":"clinic-010",
-      "name":"Greenpoint Vet Clinic",
-      "type":"veterinary",
-      "boroughs":["Brooklyn"],
-      "address":"123 Greenpoint Ave, Brooklyn, NY",
-      "phone":"(718) 555-0102",
-      "services":["Vaccination","Spay/neuter","Urgent care"],
-      "notes":"Accepts walk-ins for vaccinations during clinic hours."
+      "id": "clinic-010",
+      "name": "Greenpoint Vet Clinic",
+      "type": "veterinary",
+      "boroughs": [
+        "Brooklyn"
+      ],
+      "address": "123 Greenpoint Ave, Brooklyn, NY",
+      "phone": "(718) 555-0102",
+      "services": [
+        "Vaccination",
+        "Spay/neuter",
+        "Urgent care"
+      ],
+      "notes": "Accepts walk-ins for vaccinations during clinic hours."
     }
-
-    /* expand with many clinics, groomers, emergency hospitals, low-cost providers */
   ]
 }
