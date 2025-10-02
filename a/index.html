@@ -703,6 +703,12 @@
             margin-top: 1.5rem;
         }
 
+        /* Park Details */
+        .park-details {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
         /* Map Button */
         .map-button {
             margin-top: 1rem;
@@ -863,6 +869,27 @@
             justify-content: space-between;
         }
 
+        .text-2xl {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .text-gray-900 {
+            color: #111827;
+        }
+
+        .font-bold {
+            font-weight: bold;
+        }
+
+        .inline-block {
+            display: inline-block;
+        }
+
+        .mr-2 {
+            margin-right: 0.5rem;
+        }
+
         .relative {
             position: relative;
         }
@@ -941,24 +968,18 @@
 
         <!-- Search Results -->
         <div id="searchResultsContainer" class="hidden">
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">
-                        <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                        </svg>
-                        Search Results
-                    </h2>
-                </div>
-                <div class="card-content">
-                    <div id="parksList" class="space-y-4 scroll-custom" style="max-height: 24rem; overflow-y: auto;"></div>
-                </div>
-            </div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+                <svg class="icon inline-block mr-2" viewBox="0 0 24 24" fill="currentColor" style="width: 1.5rem; height: 1.5rem; vertical-align: middle;">
+                    <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+                Search Results
+            </h2>
+            <div id="parksList" class="space-y-4 scroll-custom" style="max-height: 24rem; overflow-y: auto;"></div>
+        </div>
 
-            <!-- Park Details -->
-            <div id="parkDetailsContainer" class="hidden">
-                <div id="parkDetails" class="park-details"></div>
-            </div>
+        <!-- Park Details -->
+        <div id="parkDetailsContainer" class="hidden">
+            <div id="parkDetails" class="park-details"></div>
         </div>
 
         <!-- Health & Safety Tips -->
@@ -1647,6 +1668,7 @@
             
             // Initial state - hide search and park details, show health tips
             searchResultsContainer.classList.add('hidden');
+            parkDetailsContainer.classList.add('hidden');
             breedInfo.classList.add('hidden');
         }
 
@@ -1687,6 +1709,9 @@
                     healthTipsCard.style.display = 'block';
                 }
             }
+            
+            // Hide park details when breed changes
+            parkDetailsContainer.classList.add('hidden');
         }
 
         function handleAreaChange(e) {
@@ -1699,6 +1724,9 @@
                     healthTipsCard.style.display = 'block';
                 }
             }
+            
+            // Hide park details when area changes
+            parkDetailsContainer.classList.add('hidden');
         }
 
         function updateBreedInfo() {
@@ -1754,6 +1782,9 @@
                         healthTipsCard.style.display = 'block';
                     }
                 }
+                
+                // Also hide park details when hiding breed info
+                parkDetailsContainer.classList.add('hidden');
             }
         }
 
@@ -1779,6 +1810,7 @@
             displaySearchResults();
             selectedPark = null;
             parkDetails.innerHTML = '';
+            parkDetailsContainer.classList.add('hidden');
             
             // Hide health tips when searching
             const healthTipsCard = document.querySelector('.card:last-child');
@@ -1891,7 +1923,7 @@
             
             const isFavorited = favorites.includes(selectedPark.id);
             
-            // Show park details container but keep search results visible
+            // Show park details container below search results
             parkDetailsContainer.classList.remove('hidden');
             
             parkDetails.innerHTML = `
@@ -2114,7 +2146,7 @@
         }
 
         function backToSearchResults() {
-            // Hide park details but keep search results visible
+            // Hide park details only
             parkDetailsContainer.classList.add('hidden');
             selectedPark = null;
             
