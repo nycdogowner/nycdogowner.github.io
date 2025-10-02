@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NYC Dog Owner Companion - Find Perfect Parks for Your Dog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%);
+            min-height: 100vh;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        /* Header Styles */
+        .header {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .header .dog-icon {
+            width: 2rem;
+            height: 2rem;
+            fill: #ea580c;
+        }
+
+        .header p {
+            font-size: 1.125rem;
+            color: #4b5563;
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #111827;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-title .icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: #ea580c;
+        }
+
+        .card-description {
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        /* Form Styles */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-select, .form-input {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            background: white;
+            font-size: 0.875rem;
+            color: #111827;
+        }
+
+        .form-select:focus, .form-input:focus {
+            outline: none;
+            border-color: #ea580c;
+            box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.1);
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: #ea580c;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #dc2626;
+        }
+
+        .btn-secondary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #2563eb;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: #6b7280;
+        }
+
+        .btn-ghost:hover {
+            background: #f3f4f6;
+        }
+
+        .btn-icon {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .btn-full {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Badge Styles */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin: 0.125rem;
+        }
+
+        .badge-outline {
+            background: transparent;
+            border: 1px solid #d1d5db;
+            color: #374151;
+        }
+
+        .badge-secondary {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 1024px) {
+            .results-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Park Card */
+        .park-card {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .park-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .park-card.selected {
+            border: 2px solid #ea580c;
+        }
+
+        .park-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .park-info h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .park-location {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.875rem;
+            color: #4b5563;
+        }
+
+        .park-location .icon {
+            width: 1rem;
+            height: 1rem;
+            fill: currentColor;
+        }
+
+        .park-cross-streets {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+
+        .park-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .park-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.875rem;
+        }
+
+        .park-rating .star {
+            width: 1rem;
+            height: 1rem;
+            fill: #fbbf24;
+            stroke: #fbbf24;
+        }
+
+        .heart-icon {
+            width: 1rem;
+            height: 1rem;
+            fill: none;
+            stroke: #9ca3af;
+            stroke-width: 2;
+        }
+
+        .heart-icon.favorited {
+            fill: #ef4444;
+            stroke: #ef4444;
+        }
+
+        /* Transportation Info */
+        .transportation-info {
+            margin-bottom: 0.5rem;
+        }
+
+        .transportation-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.25rem;
+        }
+
+        .transportation-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+
+        /* Time Info */
+        .time-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: #4b5563;
+            margin-bottom: 0.5rem;
+        }
+
+        .time-info .icon {
+            width: 1rem;
+            height: 1rem;
+            fill: currentColor;
+        }
+
+        /* Best Times */
+        .best-times {
+            margin-bottom: 0.5rem;
+        }
+
+        .best-times-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #047857;
+            margin-bottom: 0.25rem;
+        }
+
+        .best-times-text {
+            font-size: 0.75rem;
+            color: #4b5563;
+        }
+
+        /* Facilities */
+        .facilities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Park Details */
+        .park-details {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .detail-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-section h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .detail-section h4 .icon {
+            width: 1rem;
+            height: 1rem;
+            fill: currentColor;
+        }
+
+        .map-display {
+            background: #f3f4f6;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .map-placeholder {
+            height: 12rem;
+            background: linear-gradient(135deg, #d1fae5 0%, #dbeafe 100%);
+            border-radius: 0.375rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .map-info {
+            font-size: 0.75rem;
+            color: #4b5563;
+            line-height: 1.4;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .info-item {
+            margin-bottom: 0.75rem;
+        }
+
+        .info-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-value {
+            font-size: 0.875rem;
+            color: #4b5563;
+        }
+
+        .facilities-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .amenities-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .amenity-item {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.875rem;
+            color: #4b5563;
+        }
+
+        .amenity-item .icon {
+            width: 1rem;
+            height: 1rem;
+            fill: currentColor;
+        }
+
+        /* Reviews */
+        .review {
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .review:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .review-user {
+            font-weight: 500;
+            color: #111827;
+        }
+
+        .review-breed {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .review-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .review-date {
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+
+        .review-comment {
+            font-size: 0.875rem;
+            color: #4b5563;
+            margin-bottom: 0.5rem;
+        }
+
+        .review-helpful {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        /* Breed Info */
+        .breed-info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .breed-info-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .breed-stat {
+            text-align: center;
+        }
+
+        .breed-stat-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-bottom: 0.25rem;
+        }
+
+        .breed-stat-value {
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .breed-tips-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .breed-tips-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .breed-tips h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .breed-tips.exercise h4 {
+            color: #047857;
+        }
+
+        .breed-tips.health h4 {
+            color: #dc2626;
+        }
+
+        .breed-tips ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .breed-tips li {
+            font-size: 0.875rem;
+            color: #4b5563;
+            margin-bottom: 0.25rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .breed-tips li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #6b7280;
+        }
+
+        /* Health & Safety Tips */
+        .health-safety-tips {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            border-radius: 0.375rem;
+            margin-bottom: 1rem;
+        }
+
+        .health-safety-tips h4 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .health-safety-tips ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .health-safety-tips li {
+            font-size: 0.875rem;
+            color: #78350f;
+            margin-bottom: 0.25rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .health-safety-tips li::before {
+            content: '⚠️';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Map Button */
+        .map-button {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Scrollbar Styling */
+        .scroll-custom::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .scroll-custom::-webkit-scrollbar-track {
+            background: #f3f4f6;
+            border-radius: 3px;
+        }
+
+        .scroll-custom::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 3px;
+        }
+
+        .scroll-custom::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .card-content {
+                padding: 1rem;
+            }
+            
+            .card-header {
+                padding: 1rem;
+            }
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #6b7280;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+        }
+
+        .text-xs {
+            font-size: 0.75rem;
+        }
+
+        .font-semibold {
+            font-weight: 600;
+        }
+
+        .font-medium {
+            font-weight: 500;
+        }
+
+        .text-gray-600 {
+            color: #4b5563;
+        }
+
+        .text-gray-500 {
+            color: #6b7280;
+        }
+
+        .text-green-700 {
+            color: #047857;
+        }
+
+        .text-red-700 {
+            color: #dc2626;
+        }
+
+        .text-orange-600 {
+            color: #ea580c;
+        }
+
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .mb-3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .space-y-2 > * + * {
+            margin-top: 0.5rem;
+        }
+
+        .space-y-4 > * + * {
+            margin-top: 1rem;
+        }
+
+        .space-y-6 > * + * {
+            margin-top: 1.5rem;
+        }
+
+        .gap-1 {
+            gap: 0.25rem;
+        }
+
+        .gap-2 {
+            gap: 0.5rem;
+        }
+
+        .gap-4 {
+            gap: 1rem;
+        }
+
+        .gap-6 {
+            gap: 1.5rem;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-wrap {
+            flex-wrap: wrap;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .absolute {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <svg class="dog-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M4.5 10.5C3.67157 10.5 3 11.1716 3 12C3 12.8284 3.67157 13.5 4.5 13.5C5.32843 13.5 6 12.8284 6 12C6 11.1716 5.32843 10.5 4.5 10.5ZM19.5 10.5C18.6716 10.5 18 11.1716 18 12C18 12.8284 18.6716 13.5 19.5 13.5C20.3284 13.5 21 12.8284 21 12C21 11.1716 20.3284 10.5 19.5 10.5ZM12 10.5C11.1716 10.5 10.5 11.1716 10.5 12C10.5 12.8284 11.1716 13.5 12 13.5C12.8284 13.5 13.5 12.8284 13.5 12C13.5 11.1716 12.8284 10.5 12 10.5Z"/>
+                    <path d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4Z"/>
+                </svg>
+                <h1>NYC Dog Owner Companion</h1>
+                <svg class="dog-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M4.5 10.5C3.67157 10.5 3 11.1716 3 12C3 12.8284 3.67157 13.5 6 13.5C5.32843 13.5 6 12.8284 6 12C6 11.1716 5.32843 10.5 4.5 10.5ZM19.5 10.5C18.6716 10.5 18 11.1716 18 12C18 12.8284 18.6716 13.5 19.5 13.5C20.3284 13.5 21 12.8284 21 12C21 11.1716 20.3284 10.5 19.5 10.5ZM12 10.5C11.1716 10.5 10.5 11.1716 10.5 12C10.5 12.8284 11.1716 13.5 12 13.5C12.8284 13.5 13.5 12.8284 13.5 12C13.5 11.1716 12.8284 10.5 12 10.5Z"/>
+                    <path d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4Z"/>
+                </svg>
+            </div>
+            <p>Find the perfect park for your furry friend</p>
+        </header>
+
+        <!-- Search Form -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                    </svg>
+                    Find Your Perfect Park
+                </h2>
+                <p class="card-description">
+                    Search for dog-friendly parks based on your dog's breed and preferred area
+                </p>
+            </div>
+            <div class="card-content space-y-4">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Dog Breed</label>
+                        <select id="breedSelect" class="form-select">
+                            <option value="">Select your dog's breed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Area</label>
+                        <select id="areaSelect" class="form-select">
+                            <option value="">Select area</option>
+                        </select>
+                    </div>
+                </div>
+                <button id="searchBtn" class="btn btn-primary btn-full">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                    </svg>
+                    Search Parks
+                </button>
+            </div>
+        </div>
+
+        <!-- Breed Information -->
+        <div id="breedInfo" class="card hidden">
+            <div class="card-header">
+                <h2 class="card-title text-orange-600">
+                    Breed-Specific Advice
+                </h2>
+            </div>
+            <div class="card-content">
+                <div id="breedDetails"></div>
+            </div>
+        </div>
+
+        <!-- Search Results -->
+        <div id="searchResultsContainer" class="results-grid hidden">
+            <!-- Parks List -->
+            <div class="space-y-4">
+                <h2 class="text-2xl font-bold text-gray-900">Search Results</h2>
+                <div id="parksList" class="space-y-4 scroll-custom" style="max-height: 24rem; overflow-y: auto;"></div>
+            </div>
+
+            <!-- Park Details -->
+            <div class="space-y-4">
+                <div id="parkDetails" class="park-details"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data
+        const parksData = {
+            "parks": [
+                {
+                    "id": "central-park",
+                    "name": "Central Park",
+                    "area": "Manhattan",
+                    "address": "59th to 110th Street, Manhattan, NY 10024",
+                    "cross_streets": "Central Park West & 5th Avenue",
+                    "subway_access": "A, B, C, D, 1, 2, 3 trains to 59th, 72nd, 81st, 86th, 96th, 103rd, 110th Streets",
+                    "bus_access": "M1, M2, M3, M4, M7, M10, M72, M79, M86, M96, M106",
+                    "parking": "Street parking available on surrounding streets, Limited parking garages nearby (expensive)",
+                    "off_leash_hours": "Before 9 AM and after 9 PM daily",
+                    "off_leash_areas": "Multiple designated areas: Great Lawn, North Meadow, Sheep Meadow, Central Park Mall",
+                    "restrictions": "Dogs must be leashed during peak hours (9 AM - 9 PM), No dogs in playgrounds, ball fields, or conservation areas, No dogs in Ramble during nesting season (April-August)",
+                    "facilities": [
+                        "Water fountains (seasonal)",
+                        "Waste bag dispensers throughout",
+                        "23 dog runs and off-leash areas",
+                        "Restrooms at major entrances",
+                        "Dog water fountains in summer",
+                        "Shade areas and benches"
+                    ],
+                    "detailed_notes": "Central Park offers 843 acres with diverse terrain perfect for all dog breeds. The park features multiple distinct areas: the Great Lawn (best for large dogs), North Meadow (less crowded), and smaller runs near 79th Street. Best visited early morning or late evening to avoid crowds. The park has excellent drainage after rain. Many areas have soft grass suitable for senior dogs. Popular among dog walkers and trainers.",
+                    "best_times": "6-8 AM, 7-9 PM (weekdays), 5-7 AM, 8-10 PM (weekends)",
+                    "crowd_patterns": "Very crowded weekends 10 AM - 6 PM, Tourist-heavy near south end, Local residents use north end more",
+                    "nearby_amenities": [
+                        "Pet stores: Pet Central (86th & Lex), Citipups (Upper West Side)",
+                        "Vet clinics: Upper West Side Animal Hospital, Central Park Vet",
+                        "Coffee shops: Starbucks, local cafes on surrounding streets",
+                        "Restaurants: Dog-friendly patios on Columbus & Amsterdam Avenues"
+                    ],
+                    "safety_notes": "Well-lit main paths, Some areas can be isolated at night, Regular NYPD patrol, Emergency call boxes throughout",
+                    "seasonal_considerations": "Winter: Salt on paths can irritate paws, Summer: Heat advisory days limit activity, Spring: Avoid Ramble due to nesting birds, Fall: Best season with comfortable temperatures",
+                    "local_tips": "Bring your own water as fountains are turned off winter months, Weekday mornings are best for training, Many informal dog groups meet at specific times, Check Central Park Conservancy website for alerts",
+                    "map_link": "https://maps.google.com/?q=Central+Park+NYC",
+                    "rating": 4.5,
+                    "size": "large",
+                    "breed_suitability": ["all"],
+                    "historical_context": "Designed in 1858 by Frederick Law Olmsted and Calvert Vaux, Central Park was the first public park in the United States. The park has been a dog-friendly space since the 1980s when off-leash hours were established."
+                },
+                {
+                    "id": "prospect-park",
+                    "name": "Prospect Park",
+                    "area": "Brooklyn",
+                    "address": "95 Prospect Park West, Brooklyn, NY 11215",
+                    "cross_streets": "Prospect Park West & Flatbush Avenue",
+                    "subway_access": "B, Q, S trains to Prospect Park station, 2, 3 trains to Grand Army Plaza",
+                    "bus_access": "B41, B43, B48, B68, B69, B75",
+                    "parking": "Free parking on side streets, Paid parking lot at Grand Army Plaza, Limited weekend parking",
+                    "off_leash_hours": "5 AM - 9 AM and 5 PM - 9 PM daily",
+                    "off_leash_areas": "Long Meadow, Peninsula Meadow, Nethermead, Dog Beach",
+                    "restrictions": "Dogs must be leashed outside designated hours, No dogs in playgrounds or sports fields, No swimming in lake except at designated dog beach, No dogs in woodland areas during nesting season",
+                    "facilities": [
+                        "Dog beach with lake access",
+                        "Water fountains (seasonal)",
+                        "Waste bag stations",
+                        "Free parking nearby",
+                        "Restrooms at Grand Army Plaza",
+                        "Dog washing station at dog beach",
+                        "Multiple entrance points"
+                    ],
+                    "detailed_notes": "Prospect Park is Brooklyn's crown jewel with 526 acres featuring a 60-acre lake perfect for water-loving dogs. The Long Meadow is Brooklyn's largest continuous meadow, ideal for fetch and running. The Peninsula offers wooded trails and open spaces. The dog beach is a unique feature where dogs can swim safely. The park is less touristy than Central Park and has a strong local community feel.",
+                    "best_times": "6-8 AM, 6-8 PM (year-round)",
+                    "crowd_patterns": "Busy with local dog owners mornings and evenings, Weekends popular with families, Dog beach crowded summer weekends",
+                    "nearby_amenities": [
+                        "Pet stores: Park Slope Pet, Brooklyn Bark",
+                        "Vet clinics: Prospect Park Animal Clinic, Brooklyn Veterinary Group",
+                        "Coffee shops: Ozzie's, Gorilla Coffee, local cafes on 7th Avenue",
+                        "Restaurants: Many dog-friendly options on 5th & 7th Avenues"
+                    ],
+                    "safety_notes": "Well-maintained paths, Good lighting in main areas, Park enforcement present, Emergency services accessible",
+                    "seasonal_considerations": "Winter: Lake freezes, no swimming, Summer: Dog beach very popular, Spring: Beautiful cherry blossoms, Fall: Foliage viewing excellent",
+                    "local_tips": "Dog beach best after rain when lake is full, Long Meadow perfect for training sessions, Join local Prospect Park Dog Owners Association, Check Prospect Park Alliance website for events",
+                    "map_link": "https://maps.google.com/?q=Prospect+Park+Brooklyn",
+                    "rating": 4.7,
+                    "size": "large",
+                    "breed_suitability": ["all"],
+                    "historical_context": "Designed by the same architects as Central Park (Olmsted and Vaux) in 1867, Prospect Park was envisioned as Brooklyn's answer to Manhattan's Central Park. The park has been a vital community space for over 150 years."
+                },
+                {
+                    "id": "brooklyn-bridge-park",
+                    "name": "Brooklyn Bridge Park",
+                    "area": "Brooklyn",
+                    "address": "334 Furman Street, Brooklyn, NY 11201",
+                    "cross_streets": "Furman Street & Atlantic Avenue",
+                    "subway_access": "A, C trains to High Street, 2, 3 trains to Clark Street, F train to York Street",
+                    "bus_access": "B25, B26, B38, B52, B62",
+                    "parking": "Limited street parking, Paid parking available nearby, Difficult on weekends",
+                    "off_leash_hours": "6 AM - 9 AM and 6 PM - 9 PM daily",
+                    "off_leash_areas": "Pier 6 dog run, Main Street section grass areas",
+                    "restrictions": "Dogs must be leashed at all times except in designated off-leash areas, No dogs on playgrounds or sports fields, No dogs on pier edges",
+                    "facilities": [
+                        "Water fountains",
+                        "Waste bag dispensers",
+                        "Stunning harbor views",
+                        "Restrooms at multiple piers",
+                        "Shaded areas",
+                        "Seating with city views",
+                        "Separate small/large dog areas at Pier 6"
+                    ],
+                    "detailed_notes": "Brooklyn Bridge Park offers 85 acres along the East River with spectacular views of Manhattan skyline. The park features multiple piers with different activities. Pier 6 has an excellent dog run with separate areas for small and large dogs, plus water features in summer. The Main Street section offers grass areas perfect for smaller dogs. The park is very well-maintained and clean, making it ideal for owners who prefer pristine environments.",
+                    "best_times": "Early morning 6-8 AM, Evening 7-9 PM",
+                    "crowd_patterns": "Very crowded weekends and summer evenings, Tourist-heavy near Brooklyn Bridge, Local residents use weekdays more",
+                    "nearby_amenities": [
+                        "Pet stores: Brooklyn Heights Pet, DUMBO Pet",
+                        "Vet clinics: Brooklyn Heights Animal Hospital",
+                        "Coffee shops: Grimaldi's area cafes, Brooklyn Roasting Company",
+                        "Restaurants: Many dog-friendly options in DUMBO and Brooklyn Heights"
+                    ],
+                    "safety_notes": "Very safe with regular security patrols, Well-lit areas, Emergency services easily accessible, Some areas near water require caution",
+                    "seasonal_considerations": "Summer: Can be very hot with limited shade, Winter: Windy along water, Spring/Fall: Most pleasant seasons",
+                    "local_tips": "Pier 6 dog run has water features in summer, Great for socializing dogs, Excellent for training with distractions, Best views during sunset",
+                    "map_link": "https://maps.google.com/?q=Brooklyn+Bridge+Park",
+                    "rating": 4.3,
+                    "size": "medium",
+                    "breed_suitability": ["all"],
+                    "historical_context": "Built on former industrial piers, Brooklyn Bridge Park opened in 2010 as part of Brooklyn's waterfront revitalization. The park represents the transformation of Brooklyn's industrial waterfront into public recreational space."
+                },
+                {
+                    "id": "riverside-park",
+                    "name": "Riverside Park",
+                    "area": "Manhattan",
+                    "address": "Riverside Drive to Hudson River, 72nd to 158th Streets",
+                    "cross_streets": "Riverside Drive & Hudson River",
+                    "subway_access": "1, 2, 3 trains to multiple stops (72nd, 79th, 86th, 96th, 103rd, 116th, 137th, 145th, 157th)",
+                    "bus_access": "M5, M7, M11, M79, M96, M104",
+                    "parking": "Street parking on Riverside Drive, Some lots near 79th Street",
+                    "off_leash_hours": "Before 9 AM and after 9 PM daily",
+                    "off_leash_areas": "Multiple designated areas between 72nd-158th Streets",
+                    "restrictions": "Dogs must be leashed during restricted hours, No dogs in playgrounds or sports fields, Some areas completely off-limits to dogs",
+                    "facilities": [
+                        "Water fountains (seasonal)",
+                        "Waste bag dispensers",
+                        "Riverside paths with Hudson views",
+                        "Multiple entrance points",
+                        "Restrooms at major cross streets",
+                        "Benches with river views",
+                        "Dog runs at 72nd, 79th, 87th, 105th Streets"
+                    ],
+                    "detailed_notes": "Riverside Park stretches 4 miles along the Hudson River, offering a more relaxed alternative to Central Park. The park features a beautiful promenade with stunning river views, perfect for long walks. Multiple dog runs are scattered throughout the park, each with its own character. The 79th Street Boat Basin area is particularly popular. The park is generally less crowded than Central Park and offers a more local, neighborhood feel. The terrain varies from flat promenades to hilly areas, providing good exercise for dogs.",
+                    "best_times": "6-8 AM, 7-9 PM (year-round)",
+                    "crowd_patterns": "Local residents primarily, Less crowded than other major parks, Popular with joggers and dog walkers",
+                    "nearby_amenities": [
+                        "Pet stores: Multiple on Broadway and Amsterdam Avenue",
+                        "Vet clinics: Riverside Animal Hospital, Upper West Side vets",
+                        "Coffee shops: Numerous options on Broadway and Amsterdam",
+                        "Restaurants: Dog-friendly options on Amsterdam and Columbus"
+                    ],
+                    "safety_notes": "Generally safe, Well-lit main paths, Some isolated areas at night, Regular NYPD presence",
+                    "seasonal_considerations": "Winter: Can be windy along river, Summer: Good breeze from river, Spring: Cherry blossoms near 100th Street, Fall: Beautiful foliage",
+                    "local_tips": "Great for training with river distractions, 79th Street area most popular, Some areas have off-leash tolerance from regulars, Check Riverside Park Fund website for events",
+                    "map_link": "https://maps.google.com/?q=Riverside+Park+NYC",
+                    "rating": 4.4,
+                    "size": "large",
+                    "breed_suitability": ["all"],
+                    "historical_context": "Designed by Frederick Law Olmsted in the 1870s, Riverside Park was built on land acquired by the city in 1866. The park has been expanded and improved over the decades, with significant renovations in the 1980s and 1990s."
+                },
+                {
+                    "id": "tompkins-square-park",
+                    "name": "Tompkins Square Park Dog Run",
+                    "area": "Manhattan (East Village)",
+                    "address": "500 E 10th Street, New York, NY 10009",
+                    "cross_streets": "Avenue A & Avenue B",
+                    "subway_access": "L train to 1st Avenue, 6 train to Astor Place",
+                    "bus_access": "M9, M14A, M14D",
+                    "parking": "Very limited street parking, Some meters on surrounding streets",
+                    "off_leash_hours": "6 AM - 12 AM daily",
+                    "off_leash_areas": "Main dog run (1.3 acres), Small dog area",
+                    "restrictions": "Dogs only in designated run area, No dogs in playgrounds or grass areas, All dogs must be licensed and vaccinated",
+                    "facilities": [
+                        "Separate areas for small/large dogs",
+                        "Water fountains year-round",
+                        "Waste bag dispensers",
+                        "Seating for owners",
+                        "Dog washing station",
+                        "Lighting for evening use",
+                        "Community bulletin board"
+                    ],
+                    "detailed_notes": "Tompkins Square Park Dog Run holds the distinction of being the first official dog run in NYC, established in 1990. This 1.3-acre facility is a community institution in the East Village. The run features separate areas for small and large dogs, both with excellent drainage and surfacing. The facility is maintained by the community and has a strong neighborhood following. The run is known for its social atmosphere and is a great place for dogs to socialize. The surface is pea gravel and sand, which is gentle on paws and provides good drainage. The run has benches, water fountains, and even a dog washing station.",
+                    "best_times": "7-9 AM, 6-8 PM (less crowded), 10 AM - 2 PM (most social)",
+                    "crowd_patterns": "Regular local dog owners, Very social atmosphere, Can get crowded weekend afternoons, Strong community feel",
+                    "nearby_amenities": [
+                        "Pet stores: Tompkins Square Animal Clinic, numerous pet supply stores",
+                        "Vet clinics: East Village vets within walking distance",
+                        "Coffee shops: Numerous options on Avenue A and B",
+                        "Restaurants: Many dog-friendly establishments in East Village"
+                    ],
+                    "safety_notes": "Very safe with regular community presence, Well-lit, Emergency services nearby, Community watch system",
+                    "seasonal_considerations": "Summer: Can be hot, water stations crucial, Winter: Well-maintained year-round, Spring/Fall: Most comfortable seasons",
+                    "local_tips": "Great for socializing puppies and shy dogs, Community events held regularly, Join Tompkins Square Dog Run Association for updates, Best for dogs who enjoy social interaction",
+                    "map_link": "https://maps.google.com/?q=Tompkins+Square+Park+Dog+Run",
+                    "rating": 4.6,
+                    "size": "small",
+                    "breed_suitability": ["all"],
+                    "historical_context": "Established in 1990 as NYC's first official dog run, Tompkins Square Dog Run was born from community activism when local residents fought for legal off-leash space. It has served as a model for dog runs throughout the city."
+                },
+                {
+                    "id": "highland-park",
+                    "name": "Highland Park",
+                    "area": "Brooklyn/Queens border",
+                    "address": "Highland Boulevard, Brooklyn, NY 11208",
+                    "cross_streets": "Jamaica Avenue & Highland Boulevard",
+                    "subway_access": "J train to Crescent Street, 3 train to Pennsylvania Avenue",
+                    "bus_access": "B13, B20, B25, B83, Q24, Q56",
+                    "parking": "Free street parking available, Some lots near entrances",
+                    "off_leash_hours": "Dawn until 9 AM and 5 PM until dusk",
+                    "off_leash_areas": "Open meadows, Wooded trails, Ridge areas",
+                    "restrictions": "Leashed during restricted hours, No dogs in playgrounds, Stay on marked trails in wooded areas",
+                    "facilities": [
+                        "Water fountains (seasonal)",
+                        "Waste bag dispensers",
+                        "Wooded areas for exploration",
+                        "Open fields for running",
+                        "Ridgeline with city views",
+                        "Multiple entrance points",
+                        "Benches throughout"
+                    ],
+                    "detailed_notes": "Highland Park straddles the Brooklyn-Queens border and offers a more rugged, natural experience than many NYC parks. The park features rolling hills, wooded areas, and open meadows. The Ridgewood Reservoir area provides beautiful views and interesting terrain for dogs to explore. The park is much less crowded than major Manhattan parks and offers a peaceful retreat. The varied terrain includes flat areas perfect for older dogs and hills for more active ones. The park has a strong local community feel and is popular with dog owners who prefer a more natural setting.",
+                    "best_times": "6-8 AM, 6-8 PM (year-round)",
+                    "crowd_patterns": "Local residents primarily, Very quiet during weekdays, Some weekend use by families",
+                    "nearby_amenities": [
+                        "Pet stores: Local shops in surrounding neighborhoods",
+                        "Vet clinics: Several in nearby Ridgewood and Bushwick",
+                        "Coffee shops: Local cafes on Jamaica Avenue",
+                        "Restaurants: Various options in surrounding areas"
+                    ],
+                    "safety_notes": "Generally safe, Some isolated areas, Good lighting near main entrances, Local community watch",
+                    "seasonal_considerations": "Winter: Can be windy on ridges, Summer: Good shade in wooded areas, Spring: Beautiful wildflowers, Fall: Excellent foliage viewing",
+                    "local_tips": "Great for dogs who love exploring, Less crowded than other parks, Bring water as fountains are seasonal, Excellent for training in varied terrain",
+                    "map_link": "https://maps.google.com/?q=Highland+Park+Brooklyn",
+                    "rating": 4.2,
+                    "size": "medium",
+                    "breed_suitability": ["all"],
+                    "historical_context": "Established in the early 20th century, Highland Park was designed to serve the growing populations of Brooklyn and Queens. The park has maintained its natural character while providing essential green space for the community."
+                },
+                {
+                    "id": "carl-schurz-park",
+                    "name": "Carl Schurz Park",
+                    "area": "Manhattan (Upper East Side)",
+                    "address": "East End Avenue & 84th-90th Streets, New York, NY 10028",
+                    "cross_streets": "East End Avenue & 86th Street",
+                    "subway_access": "4, 5, 6 trains to 86th Street",
+                    "bus_access": "M79, M86, M96, M15",
+                    "parking": "Very limited street parking, Some meters on East End Avenue",
+                    "off_leash_hours": "Before 9 AM and after 9 PM daily",
+                    "off_leash_areas": "Designated areas near East River, Small dog run",
+                    "restrictions": "Dogs must be leashed during restricted hours, No dogs in playgrounds, No dogs on promenade during peak hours",
+                    "facilities": [
+                        "Small dog run",
+                        "Water fountains (seasonal)",
+                        "Waste bag dispensers",
+                        "East River views",
+                        "Restrooms available",
+                        "Benches with river views",
+                        "Well-maintained paths"
+                    ],
+                    "detailed_notes": "Carl Schurz Park is a hidden gem on the Upper East Side, offering beautiful East River views and a more intimate setting than larger parks. The park features a small but well-maintained dog run that's perfect for smaller breeds or dogs who prefer quieter environments. The riverside promenade provides excellent walking opportunities with stunning views of the Roosevelt Island Bridge and Queens. The park is particularly popular with Upper East Side residents and has a strong neighborhood feel. The small size makes it ideal for older dogs or those who might be overwhelmed by larger, busier parks.",
+                    "best_times": "7-9 AM, 7-9 PM (year-round)",
+                    "crowd_patterns": "Local residents primarily, Very quiet during weekdays, Some weekend family use",
+                    "nearby_amenities": [
+                        "Pet stores: Several on York and 1st Avenues",
+                        "Vet clinics: Upper East Side Animal Hospital",
+                        "Coffee shops: Numerous options on 2nd and 3rd Avenues",
+                        "Restaurants: Many dog-friendly options in neighborhood"
+                    ],
+                    "safety_notes": "Very safe with regular security, Well-lit, Emergency services nearby, Active neighborhood association",
+                    "seasonal_considerations": "Winter: Can be windy along river, Summer: Good breeze from water, Spring: Beautiful river views, Fall: Comfortable walking weather",
+                    "local_tips": "Perfect for small dogs and seniors, Great for socializing with neighbors, Less intimidating than larger parks, Excellent for training in controlled environment",
+                    "map_link": "https://maps.google.com/?q=Carl+Schurz+Park+NYC",
+                    "rating": 4.1,
+                    "size": "small",
+                    "breed_suitability": ["all"],
+                    "historical_context": "Named after German-born American statesman Carl Schurz, the park was designed in 1910 and has been a beloved neighborhood space for over a century. The park has undergone several renovations while maintaining its historic character."
+                },
+                {
+                    "id": "marcus-garvey-park",
+                    "name": "Marcus Garvey Park",
+                    "area": "Manhattan (Harlem)",
+                    "address": "Madison Avenue & 120th-124th Streets, New York, NY 10027",
+                    "cross_streets": "Madison Avenue & 122nd Street",
+                    "subway_access": "2, 3 trains to 125th Street, 4, 5, 6 trains to 125th Street",
+                    "bus_access": "M1, M2, M3, M4, M7, M10, M100, M101, M102",
+                    "parking": "Street parking available, Some meters on surrounding streets",
+                    "off_leash_hours": "Before 9 AM and after 9 PM daily",
+                    "off_leash_areas": "Designated areas near pool, Open meadow sections",
+                    "restrictions": "Dogs must be leashed during restricted hours, No dogs in playgrounds, No dogs near pool area when open",
+                    "facilities": [
+                        "Water fountains (seasonal)",
+                        "Waste bag dispensers",
+                        "Hilly terrain for exercise",
+                        "Open meadow areas",
+                        "Restrooms available",
+                        "Multiple entrance points",
+                        "Bandshell area"
+                    ],
+                    "detailed_notes": "Marcus Garvey Park is a vibrant community space in Harlem, built on a rocky outcrop that provides natural elevation and interesting terrain. The park's hilly landscape offers excellent exercise opportunities for dogs, with varying elevations that provide good cardiovascular workouts. The park has a strong community feel and is popular with local dog owners. The acropolis-like hill in the center provides panoramic views of Harlem and is a popular spot for dog walkers. The park is particularly good for active dogs who enjoy varied terrain and climbing. The community atmosphere is welcoming and diverse, reflecting the rich cultural heritage of Harlem.",
+                    "best_times": "6-8 AM, 7-9 PM (year-round)",
+                    "crowd_patterns": "Strong local community use, Busy with families and dog owners, Popular during summer concerts",
+                    "nearby_amenities": [
+                        "Pet stores: Local shops on 125th Street",
+                        "Vet clinics: Several in Harlem area",
+                        "Coffee shops: Numerous options on 125th Street",
+                        "Restaurants: Many soul food and Caribbean restaurants"
+                    ],
+                    "safety_notes": "Generally safe, Community watch active, Well-lit main areas, Regular NYPD presence",
+                    "seasonal_considerations": "Summer: Popular for concerts and events, Winter: Can be challenging on hills, Spring: Beautiful blooming trees, Fall: Great foliage in park",
+                    "local_tips": "Excellent for active dogs who need exercise, Great community atmosphere, Summer events can be crowded, Perfect for dogs who enjoy varied terrain",
+                    "map_link": "https://maps.google.com/?q=Marcus+Garvey+Park+Harlem",
+                    "rating": 4.0,
+                    "size": "medium",
+                    "breed_suitability": ["all"],
+                    "historical_context": "Originally known as Mount Morris Park, it was renamed in 1973 to honor Marcus Garvey, the Jamaican-born Black nationalist leader. The park has been a central gathering place for Harlem's community for over a century."
+                }
+            ]
+        };
+
+        const breedsData = {
+            "breeds": [
+                {
+                    "id": "labrador",
+                    "name": "Labrador Retriever",
+                    "energy_level": "high",
+                    "exercise_needs": "high",
+                    "temperament": "friendly, outgoing, active",
+                    "tips": [
+                        "Needs at least 1 hour of exercise daily",
+                        "Loves water and swimming",
+                        "Prone to obesity, monitor food intake",
+                        "Excellent for off-leash parks due to good recall"
+                    ],
+                    "health_considerations": [
+                        "Hip and elbow dysplasia screening recommended",
+                        "Regular ear cleaning to prevent infections",
+                        "Watch for excessive weight gain"
+                    ]
+                },
+                {
+                    "id": "golden-retriever",
+                    "name": "Golden Retriever",
+                    "energy_level": "medium-high",
+                    "exercise_needs": "medium-high",
+                    "temperament": "gentle, intelligent, friendly",
+                    "tips": [
+                        "Requires 45-60 minutes of exercise daily",
+                        "Great with children and other dogs",
+                        "Needs regular grooming",
+                        "Thrives in large open spaces"
+                    ],
+                    "health_considerations": [
+                        "Cancer screening important",
+                        "Regular heart checkups",
+                        "Monitor for skin allergies"
+                    ]
+                },
+                {
+                    "id": "french-bulldog",
+                    "name": "French Bulldog",
+                    "energy_level": "low-medium",
+                    "exercise_needs": "low",
+                    "temperament": "adaptable, playful, smart",
+                    "tips": [
+                        "Short walks of 15-20 minutes are sufficient",
+                        "Avoid hot weather due to breathing issues",
+                        "Best for smaller parks or indoor activities",
+                        "Monitor breathing during exercise"
+                    ],
+                    "health_considerations": [
+                        "Brachycephalic syndrome - avoid overexertion",
+                        "Skin fold cleaning needed regularly",
+                        "Watch for heat exhaustion"
+                    ]
+                },
+                {
+                    "id": "german-shepherd",
+                    "name": "German Shepherd",
+                    "energy_level": "high",
+                    "exercise_needs": "high",
+                    "temperament": "confident, courageous, smart",
+                    "tips": [
+                        "Needs 1-2 hours of exercise daily",
+                        "Requires mental stimulation alongside physical exercise",
+                        "Excellent for large parks with varied terrain",
+                        "Training and socialization essential"
+                    ],
+                    "health_considerations": [
+                        "Hip dysplasia screening crucial",
+                        "Regular joint health monitoring",
+                        "Watch for degenerative myelopathy"
+                    ]
+                },
+                {
+                    "id": "beagle",
+                    "name": "Beagle",
+                    "energy_level": "medium",
+                    "exercise_needs": "medium",
+                    "temperament": "curious, friendly, merry",
+                    "tips": [
+                        "Needs 30-45 minutes of exercise daily",
+                        "Strong scent drive - keep on leash unless in enclosed area",
+                        "Enjoys sniffing and exploring",
+                        "May bay/howl, consider park noise restrictions"
+                    ],
+                    "health_considerations": [
+                        "Prone to epilepsy - monitor for seizures",
+                        "Regular ear cleaning important",
+                        "Watch for hypothyroidism"
+                    ]
+                },
+                {
+                    "id": "poodle",
+                    "name": "Poodle",
+                    "energy_level": "medium-high",
+                    "exercise_needs": "medium",
+                    "temperament": "intelligent, active, elegant",
+                    "tips": [
+                        "Needs 30-60 minutes of exercise daily",
+                        "Highly trainable - great for dog parks with training areas",
+                        "Regular grooming required",
+                        "Enjoys mental challenges and games"
+                    ],
+                    "health_considerations": [
+                        "Regular eye exams recommended",
+                        "Monitor for Addison's disease",
+                        "Regular dental care important"
+                    ]
+                }
+            ]
+        };
+
+        const reviewsData = {
+            "reviews": [
+                {
+                    "id": "review-1",
+                    "park_id": "central-park",
+                    "user_name": "Sarah M.",
+                    "dog_breed": "Golden Retriever",
+                    "rating": 5,
+                    "date": "2024-01-15",
+                    "comment": "Central Park is amazing for morning walks! The off-leash hours before 9 AM are perfect. My golden loves the open spaces and there are plenty of water fountains. Can get crowded on weekends though.",
+                    "helpful_count": 24
+                },
+                {
+                    "id": "review-2",
+                    "park_id": "prospect-park",
+                    "user_name": "Mike D.",
+                    "dog_breed": "Labrador Mix",
+                    "rating": 5,
+                    "date": "2024-01-12",
+                    "comment": "The dog beach at Prospect Park is incredible! My labrador loves swimming here. The Long Meadow is perfect for fetch and the community is very friendly. Highly recommend for water-loving dogs.",
+                    "helpful_count": 18
+                },
+                {
+                    "id": "review-3",
+                    "park_id": "brooklyn-bridge-park",
+                    "user_name": "Jennifer L.",
+                    "dog_breed": "French Bulldog",
+                    "rating": 4,
+                    "date": "2024-01-10",
+                    "comment": "Beautiful views and well-maintained. Great for shorter walks which is perfect for my Frenchie. The designated areas are clean and there's always shade available. Just wish there were more off-leash spaces.",
+                    "helpful_count": 15
+                },
+                {
+                    "id": "review-4",
+                    "park_id": "tompkins-square-park",
+                    "user_name": "David R.",
+                    "dog_breed": "Beagle",
+                    "rating": 4,
+                    "date": "2024-01-08",
+                    "comment": "The separate areas for small and large dogs are great! My beagle feels safe here and loves socializing. The community is very welcoming. Only downside is it can get a bit muddy after rain.",
+                    "helpful_count": 12
+                },
+                {
+                    "id": "review-5",
+                    "park_id": "riverside-park",
+                    "user_name": "Amanda K.",
+                    "dog_breed": "German Shepherd",
+                    "rating": 5,
+                    "date": "2024-01-05",
+                    "comment": "Perfect for active dogs! My German Shepherd loves the long riverside paths. It's less crowded than Central Park and there are multiple entrances. Great for training sessions too.",
+                    "helpful_count": 21
+                },
+                {
+                    "id": "review-6",
+                    "park_id": "highland-park",
+                    "user_name": "Chris T.",
+                    "dog_breed": "Poodle",
+                    "rating": 4,
+                    "date": "2024-01-03",
+                    "comment": "Hidden gem! Much less crowded than other parks. My poodle loves the open spaces for training. The wooded areas provide great shade in summer. Facilities could be better but the space makes up for it.",
+                    "helpful_count": 9
+                },
+                {
+                    "id": "review-7",
+                    "park_id": "carl-schurz-park",
+                    "user_name": "Lisa W.",
+                    "dog_breed": "Yorkshire Terrier",
+                    "rating": 4,
+                    "date": "2024-01-01",
+                    "comment": "Perfect for small dogs! My Yorkie feels comfortable here and the East River views are beautiful. Well-maintained and not overwhelming for smaller breeds. Great morning spot!",
+                    "helpful_count": 14
+                },
+                {
+                    "id": "review-8",
+                    "park_id": "marcus-garvey-park",
+                    "user_name": "Robert J.",
+                    "dog_breed": "Boxer",
+                    "rating": 4,
+                    "date": "2023-12-28",
+                    "comment": "Great for energetic dogs! The hilly terrain gives my boxer a good workout. Strong community feel and very diverse. Can be challenging for older dogs but perfect for young, active ones.",
+                    "helpful_count": 11
+                },
+                {
+                    "id": "review-9",
+                    "park_id": "central-park",
+                    "user_name": "Emily S.",
+                    "dog_breed": "Corgi",
+                    "rating": 3,
+                    "date": "2023-12-25",
+                    "comment": "Central Park is beautiful but can be overwhelming. My corgi gets nervous with too many large dogs. Best to go during off-peak hours. The multiple dog runs are helpful for finding the right fit.",
+                    "helpful_count": 8
+                },
+                {
+                    "id": "review-10",
+                    "park_id": "prospect-park",
+                    "user_name": "Tom B.",
+                    "dog_breed": "Australian Shepherd",
+                    "rating": 5,
+                    "date": "2023-12-20",
+                    "comment": "Absolutely fantastic! My Aussie loves the space to run and the dog beach is a huge plus. The off-leash hours are generous and the park is well-maintained. Best dog park in Brooklyn!",
+                    "helpful_count": 19
+                }
+            ]
+        };
+
+        // Health & Safety Tips Data
+        const healthSafetyTips = {
+            "general": [
+                "Always carry water and a bowl for your dog",
+                "Bring waste bags and clean up after your pet",
+                "Keep your dog's vaccinations up to date",
+                "Ensure your dog has proper ID tags and is microchipped",
+                "Monitor your dog for signs of heat exhaustion in warm weather",
+                "Check for ticks after visiting wooded areas",
+                "Be aware of your dog's limits and don't over-exercise"
+            ],
+            "seasonal": {
+                "summer": [
+                    "Avoid hot pavement - test with your hand",
+                    "Visit parks early morning or evening",
+                    "Provide plenty of water and shade",
+                    "Watch for signs of heatstroke",
+                    "Consider booties for hot surfaces"
+                ],
+                "winter": [
+                    "Protect paws from salt and ice",
+                    "Consider a dog coat for short-haired breeds",
+                    "Limit time outdoors in extreme cold",
+                    "Wipe paws after walks to remove chemicals",
+                    "Be cautious of frozen lakes and ponds"
+                ],
+                "spring": [
+                    "Watch out for seasonal allergies",
+                    "Be aware of nesting birds and wildlife",
+                    "Check for fleas and ticks regularly",
+                    "Keep dogs away from spring flowers that may be toxic"
+                ],
+                "fall": [
+                    "Be aware of hunting seasons in some areas",
+                    "Watch for mushrooms and other fall hazards",
+                    "Keep dogs away from leaf piles that may hide dangers",
+                    "Adjust exercise routines as daylight hours decrease"
+                ]
+            },
+            "breed_specific": {
+                "brachycephalic": [
+                    "Avoid extreme temperatures",
+                    "Monitor breathing closely",
+                    "Limit intense exercise",
+                    "Keep cool and well-hydrated",
+                    "Avoid stress and excitement"
+                ],
+                "large_breeds": [
+                    "Be cautious with intense exercise in young dogs",
+                    "Watch for signs of joint stress",
+                    "Provide adequate warm-up and cool-down",
+                    "Monitor for bloat symptoms after exercise"
+                ],
+                "small_breeds": [
+                    "Be aware of surroundings to prevent injury",
+                    "Avoid interactions with much larger dogs",
+                    "Provide regular rest breaks",
+                    "Be cautious in crowded areas"
+                ]
+            }
+        };
+
+        // State
+        let selectedBreed = '';
+        let selectedArea = '';
+        let searchResultsArray = [];
+        let favorites = JSON.parse(localStorage.getItem('dogParkFavorites') || '[]');
+        let selectedPark = null;
+        let parkReviews = [];
+
+        // DOM Elements
+        const breedSelect = document.getElementById('breedSelect');
+        const areaSelect = document.getElementById('areaSelect');
+        const searchBtn = document.getElementById('searchBtn');
+        const breedInfo = document.getElementById('breedInfo');
+        const breedDetails = document.getElementById('breedDetails');
+        const searchResultsContainer = document.getElementById('searchResultsContainer');
+        const parksList = document.getElementById('parksList');
+        const parkDetails = document.getElementById('parkDetails');
+
+        // Initialize
+        function init() {
+            populateBreedSelect();
+            populateAreaSelect();
+            setupEventListeners();
+        }
+
+        function populateBreedSelect() {
+            breedsData.breeds.forEach(breed => {
+                const option = document.createElement('option');
+                option.value = breed.id;
+                option.textContent = breed.name;
+                breedSelect.appendChild(option);
+            });
+        }
+
+        function populateAreaSelect() {
+            const areas = [...new Set(parksData.parks.map(park => park.area))];
+            areaSelect.innerHTML = '<option value="">Select area</option>';
+            areas.forEach(area => {
+                const option = document.createElement('option');
+                option.value = area;
+                option.textContent = area;
+                areaSelect.appendChild(option);
+            });
+        }
+
+        function setupEventListeners() {
+            breedSelect.addEventListener('change', handleBreedChange);
+            areaSelect.addEventListener('change', handleAreaChange);
+            searchBtn.addEventListener('click', handleSearch);
+        }
+
+        function handleBreedChange(e) {
+            selectedBreed = e.target.value;
+            updateBreedInfo();
+        }
+
+        function handleAreaChange(e) {
+            selectedArea = e.target.value;
+        }
+
+        function updateBreedInfo() {
+            if (selectedBreed) {
+                const breed = breedsData.breeds.find(b => b.id === selectedBreed);
+                if (breed) {
+                    breedInfo.classList.remove('hidden');
+                    breedDetails.innerHTML = `
+                        <div class="breed-info-grid">
+                            <div class="breed-stat">
+                                <div class="badge badge-outline mb-2">Energy Level</div>
+                                <div class="breed-stat-value">${breed.energy_level}</div>
+                            </div>
+                            <div class="breed-stat">
+                                <div class="badge badge-outline mb-2">Exercise Needs</div>
+                                <div class="breed-stat-value">${breed.exercise_needs}</div>
+                            </div>
+                            <div class="breed-stat">
+                                <div class="badge badge-outline mb-2">Temperament</div>
+                                <div class="breed-stat-value">${breed.temperament}</div>
+                            </div>
+                        </div>
+                        <div class="breed-tips-grid">
+                            <div class="breed-tips exercise">
+                                <h4>Exercise Tips</h4>
+                                <ul>
+                                    ${breed.tips.map(tip => `<li>${tip}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div class="breed-tips health">
+                                <h4>Health Considerations</h4>
+                                <ul>
+                                    ${breed.health_considerations.map(consideration => `<li>${consideration}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    `;
+                }
+            } else {
+                breedInfo.classList.add('hidden');
+            }
+        }
+
+        function handleSearch() {
+            let results = parksData.parks;
+
+            if (selectedArea) {
+                results = results.filter(park => park.area === selectedArea);
+            }
+
+            if (selectedBreed) {
+                const breed = breedsData.breeds.find(b => b.id === selectedBreed);
+                if (breed) {
+                    results = results.filter(park => 
+                        park.breed_suitability.includes('all') || 
+                        (breed.energy_level === 'high' && park.size === 'large') ||
+                        (breed.energy_level === 'low' && park.size === 'small')
+                    );
+                }
+            }
+
+            searchResultsArray = results;
+            displaySearchResults();
+            selectedPark = null;
+            parkDetails.innerHTML = '';
+        }
+
+        function displaySearchResults() {
+            if (searchResultsArray.length === 0) {
+                parksList.innerHTML = '<div class="loading">No parks found matching your criteria.</div>';
+                searchResultsContainer.classList.remove('hidden');
+                return;
+            }
+
+            parksList.innerHTML = searchResultsArray.map(park => createParkCard(park)).join('');
+            searchResultsContainer.classList.remove('hidden');
+        }
+
+        function createParkCard(park) {
+            const isFavorited = favorites.includes(park.id);
+            const isSelected = selectedPark && selectedPark.id === park.id;
+            
+            return `
+                <div class="card park-card ${isSelected ? 'selected' : ''}" onclick="selectPark('${park.id}')">
+                    <div class="card-content p-4">
+                        <div class="park-card-header">
+                            <div class="park-info">
+                                <h3 class="font-semibold text-lg">${park.name}</h3>
+                                <div class="park-location">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                    </svg>
+                                    ${park.area}
+                                </div>
+                                <div class="park-cross-streets">${park.cross_streets}</div>
+                            </div>
+                            <div class="park-actions">
+                                <div class="park-rating">
+                                    <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                    <span>${park.rating}</span>
+                                </div>
+                                <button class="btn btn-ghost btn-sm" onclick="toggleFavorite('${park.id}', event)">
+                                    <svg class="heart-icon ${isFavorited ? 'favorited' : ''}" viewBox="0 0 24 24">
+                                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="transportation-info">
+                            <div class="transportation-label">Transportation:</div>
+                            <div class="transportation-badges">
+                                <span class="badge badge-outline text-xs">
+                                    🚇 ${park.subway_access.split(', ')[0].split(' ')[0]}
+                                </span>
+                                ${park.bus_access ? `
+                                    <span class="badge badge-outline text-xs">
+                                        🚌 ${park.bus_access.split(', ')[0].split(' ')[0]}
+                                    </span>
+                                ` : ''}
+                            </div>
+                        </div>
+                        
+                        <div class="time-info">
+                            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                            </svg>
+                            <span>Off-leash: ${park.off_leash_hours}</span>
+                        </div>
+                        
+                        <div class="best-times">
+                            <div class="best-times-label">Best times:</div>
+                            <div class="best-times-text">${park.best_times}</div>
+                        </div>
+                        
+                        <div class="facilities">
+                            ${park.facilities.slice(0, 3).map(facility => 
+                                `<span class="badge badge-secondary text-xs">${facility}</span>`
+                            ).join('')}
+                            ${park.facilities.length > 3 ? 
+                                `<span class="badge badge-secondary text-xs">+${park.facilities.length - 3} more</span>` : 
+                                ''
+                            }
+                        </div>
+                        <p class="text-sm text-gray-600 line-clamp-2">${park.detailed_notes}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectPark(parkId) {
+            selectedPark = parksData.parks.find(p => p.id === parkId);
+            parkReviews = reviewsData.reviews.filter(r => r.park_id === parkId);
+            displayParkDetails();
+            
+            // Update selected state in cards
+            document.querySelectorAll('.park-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+        }
+
+        function displayParkDetails() {
+            if (!selectedPark) return;
+            
+            const isFavorited = favorites.includes(selectedPark.id);
+            
+            parkDetails.innerHTML = `
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title flex items-center justify-between">
+                            ${selectedPark.name}
+                            <button class="btn btn-ghost btn-sm" onclick="toggleFavorite('${selectedPark.id}')">
+                                <svg class="heart-icon ${isFavorited ? 'favorited' : ''}" viewBox="0 0 24 24">
+                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                </svg>
+                            </button>
+                        </h2>
+                        <p class="card-description">${selectedPark.area}</p>
+                    </div>
+                    <div class="card-content space-y-6">
+                        <!-- Health & Safety Tips -->
+                        <div class="health-safety-tips">
+                            <h4>
+                                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                                </svg>
+                                Health & Safety Tips
+                            </h4>
+                            <ul>
+                                ${healthSafetyTips.general.map(tip => `<li>${tip}</li>`).join('')}
+                            </ul>
+                        </div>
+
+                        <!-- Map Display -->
+                        <div class="detail-section">
+                            <h4 class="font-semibold mb-3 flex items-center gap-2">
+                                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                </svg>
+                                Location Map
+                            </h4>
+                            <div class="map-display">
+                                <div class="map-placeholder">
+                                    <div class="text-center">
+                                        <svg class="icon" style="width: 2rem; height: 2rem; fill: #ea580c; margin: 0 auto 0.5rem;" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                        </svg>
+                                        <div class="text-sm font-medium text-gray-700">${selectedPark.name}</div>
+                                        <div class="text-xs text-gray-500">${selectedPark.address}</div>
+                                    </div>
+                                </div>
+                                <div class="map-info">
+                                    <p class="mb-1">📍 ${selectedPark.address}</p>
+                                    <p class="mb-1">🚇 ${selectedPark.subway_access.split(', ')[0]}</p>
+                                    <p>🚌 ${selectedPark.bus_access}</p>
+                                </div>
+                                <div class="map-button">
+                                    <a href="${selectedPark.map_link}" target="_blank" class="btn btn-secondary">
+                                        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M21 6.5c0 .55-.45 1-1 1h-1v1c0 .55-.45 1-1 1s-1-.45-1-1v-1h-1c-.55 0-1-.45-1-1s.45-1 1-1h1v-1c0-.55.45-1 1-1s1 .45 1 1v1h1c.55 0 1 .45 1 1zM19 21l-7-3-7 3V5c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v16z"/>
+                                        </svg>
+                                        Open in Google Maps
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Basic Information -->
+                        <div class="detail-section">
+                            <h4 class="font-semibold mb-3">Basic Information</h4>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <div class="info-label">Off-Leash Hours</div>
+                                    <div class="info-value">${selectedPark.off_leash_hours}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Best Times to Visit</div>
+                                    <div class="info-value">${selectedPark.best_times}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Size</div>
+                                    <div class="info-value">${selectedPark.size.charAt(0).toUpperCase() + selectedPark.size.slice(1)}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Rating</div>
+                                    <div class="info-value">${selectedPark.rating}/5 ⭐</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Facilities -->
+                        <div class="detail-section">
+                            <h4 class="font-semibold mb-3">Facilities</h4>
+                            <div class="facilities-list">
+                                ${selectedPark.facilities.map(facility => 
+                                    `<span class="badge badge-secondary">${facility}</span>`
+                                ).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Transportation -->
+                        <div class="detail-section">
+                            <h4 class="font-semibold mb-3">Transportation</h4>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <div class="info-label">Subway</div>
+                                    <div class="info-value">${selectedPark.subway_access}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Bus</div>
+                                    <div class="info-value">${selectedPark.bus_access}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Parking</div>
+                                    <div class="info-value">${selectedPark.parking}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nearby Amenities -->
+                        <div class="detail-section">
+                            <h4 class="font-semibold mb-3">Nearby Amenities</h4>
+                            <div class="amenities-list">
+                                ${selectedPark.nearby_amenities.map(amenity => 
+                                    `<div class="amenity-item">
+                                        <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                        </svg>
+                                        ${amenity}
+                                    </div>`
+                                ).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Safety & Seasonal Info -->
+                        <div class="detail-section">
+                            <h4 class="font-semibold mb-3">Safety & Seasonal Information</h4>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <div class="info-label">Safety Notes</div>
+                                    <div class="info-value">${selectedPark.safety_notes}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Seasonal Considerations</div>
+                                    <div class="info-value">${selectedPark.seasonal_considerations}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Local Tips -->
+                        <div class="detail-section">
+                            <h4 class="font-semibold mb-3">Local Tips</h4>
+                            <p class="text-sm text-gray-600">${selectedPark.local_tips}</p>
+                        </div>
+
+                        <!-- Historical Context -->
+                        ${selectedPark.historical_context ? `
+                            <div class="detail-section">
+                                <h4 class="font-semibold mb-3">Historical Context</h4>
+                                <p class="text-sm text-gray-600">${selectedPark.historical_context}</p>
+                            </div>
+                        ` : ''}
+
+                        <!-- Reviews -->
+                        <div class="detail-section">
+                            <h4 class="font-semibold mb-3">User Reviews</h4>
+                            ${parkReviews.length > 0 ? parkReviews.map(review => `
+                                <div class="review">
+                                    <div class="review-header">
+                                        <div>
+                                            <div class="review-user">${review.user_name}</div>
+                                            <div class="review-breed">${review.dog_breed}</div>
+                                        </div>
+                                        <div class="review-rating">
+                                            ${'⭐'.repeat(review.rating)}${'☆'.repeat(5-review.rating)}
+                                        </div>
+                                    </div>
+                                    <div class="review-date">${review.date}</div>
+                                    <p class="review-comment">${review.comment}</p>
+                                    <div class="review-helpful">👍 ${review.helpful_count} found this helpful</div>
+                                </div>
+                            `).join('') : '<p class="text-sm text-gray-600">No reviews yet.</p>'}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function toggleFavorite(parkId, event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            
+            if (favorites.includes(parkId)) {
+                favorites = favorites.filter(id => id !== parkId);
+            } else {
+                favorites.push(parkId);
+            }
+            
+            localStorage.setItem('dogParkFavorites', JSON.stringify(favorites));
+            
+            // Update UI
+            if (selectedPark && selectedPark.id === parkId) {
+                displayParkDetails();
+            }
+            
+            // Update cards
+            document.querySelectorAll('.park-card').forEach(card => {
+                const heartIcon = card.querySelector('.heart-icon');
+                if (heartIcon) {
+                    const cardParkId = card.getAttribute('onclick').match(/'([^']+)'/)[1];
+                    if (cardParkId === parkId) {
+                        heartIcon.classList.toggle('favorited', favorites.includes(parkId));
+                    }
+                }
+            });
+        }
+
+        // Make functions globally available
+        window.selectPark = selectPark;
+        window.toggleFavorite = toggleFavorite;
+
+        // Initialize the app
+        init();
+    </script>
+</body>
+</html>
